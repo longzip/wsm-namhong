@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { render } from "react-dom";
 import configureStore from "./configureStore";
 import { Provider } from "react-redux";

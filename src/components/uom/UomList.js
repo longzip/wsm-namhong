@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as PropTypes from "prop-types";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { SortingState, IntegratedSorting } from "@devexpress/dx-react-grid";
