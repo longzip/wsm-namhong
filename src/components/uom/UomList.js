@@ -1,12 +1,6 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import { SortingState, IntegratedSorting } from "@devexpress/dx-react-grid";
-import {
-  Grid,
-  Table,
-  TableHeaderRow
-} from "@devexpress/dx-react-grid-bootstrap4";
 import getCaret from "../common/GetCaret";
 import dateFormat from "../common/MyFormat";
 
@@ -16,7 +10,7 @@ class UomList extends React.Component {
 
     this.options = {
       sortIndicator: true,
-      noDataText: "No data"
+      noDataText: "No data",
     };
 
     this.selectRowProp = {
@@ -31,23 +25,9 @@ class UomList extends React.Component {
     return (
       <div>
         <div className="card">
-        <Grid
-        rows={this.props.uoms}
-        columns={[
-          { name: 'id', title: '#' },
-          { name: 'name', title: 'Tên' },
-          { name: 'createdAt', title: 'Ngày tạo' },
-        ]}
-      >
-        <SortingState
-          defaultSorting={[{ columnName: 'city', direction: 'asc' }]}
-        />
-        <IntegratedSorting />
-        <Table />
-        <TableHeaderRow showSortingControls />
-      </Grid>
           <BootstrapTable
             data={this.props.uoms}
+            pagination={true}
             selectRow={this.selectRowProp}
             options={this.options}
             bordered={false}

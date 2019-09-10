@@ -36,7 +36,7 @@ export function saveUserAction(UserBeingAddedOrEdited) {
     dispatch(ApiCallBeginAction());
     if (UserBeingAddedOrEdited.id) {
       return fetchClient
-        .put("Users/" + UserBeingAddedOrEdited.id, UserBeingAddedOrEdited)
+        .put("users/" + UserBeingAddedOrEdited.id, UserBeingAddedOrEdited)
         .then(() => {
           dispatch(updateExistingUserResponse());
         })
@@ -58,17 +58,17 @@ export function saveUserAction(UserBeingAddedOrEdited) {
   };
 }
 
-export const getUserResponse = UserFound => ({
+export const getUserResponse = user => ({
   type: ActionType.GET_USER_RESPONSE,
-  User: UserFound
+  user: user
 });
 
-export function getUserAction(UserId) {
+export function getUserAction(id) {
   return dispatch => {
     dispatch(ApiCallBeginAction());
 
     return fetchClient
-      .get("Users/" + UserId)
+      .get("users/" + id)
       .then(response => {
         dispatch(getUserResponse(response.data.result));
       })
@@ -82,12 +82,12 @@ export const deleteUserResponse = () => ({
   type: ActionType.DELETE_USER_RESPONSE
 });
 
-export function deleteUserAction(UserId) {
+export function deleteUserAction(id) {
   return dispatch => {
     dispatch(ApiCallBeginAction());
 
     return fetchClient
-      .delete("Users/" + UserId)
+      .delete("users/" + id)
       .then(() => {
         dispatch(deleteUserResponse());
       })

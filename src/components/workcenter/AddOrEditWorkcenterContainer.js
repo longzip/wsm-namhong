@@ -14,6 +14,7 @@ export class AddOrEditWorkcenterContainer extends React.Component {
   }
 
   componentDidMount() {
+    if(this.props.match.params.id)
     this.props.action
       .getWorkcenterAction(this.props.match.params.id)
       .catch(error => {

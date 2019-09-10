@@ -19,8 +19,32 @@ export const UserForm = ({
       <Field
         type="text"
         name="name"
-        label="Name"
-        placeholder="Name of the course"
+        label="Họ và tên"
+        placeholder="Họ và tên"
+        component={FieldInput}
+      />
+
+      <Field
+        type="text"
+        name="username"
+        label="Tên đăng nhập"
+        placeholder="Tên đăng nhập"
+        component={FieldInput}
+      />
+
+      <Field
+        type="text"
+        name="email"
+        label="Email"
+        placeholder="Email"
+        component={FieldInput}
+      />
+
+      <Field
+        type="password"
+        name="newpassword"
+        label="Mật khẩu"
+        placeholder=""
         component={FieldInput}
       />
 

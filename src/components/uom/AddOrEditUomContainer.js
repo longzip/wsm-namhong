@@ -14,6 +14,7 @@ export class AddOrEditUomContainer extends React.Component {
   }
 
   componentDidMount() {
+    if(this.props.match.params.id)
     this.props.action.getUomAction(this.props.match.params.id).catch(error => {
       toastr.error(error);
     });

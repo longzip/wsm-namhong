@@ -30,7 +30,6 @@ export class UomListContainer extends React.Component {
 
   handleEdit() {
     const selectedUomId = this.state.selectedUomId;
-    console.log(selectedUomId);
     if (selectedUomId) {
       this.setState({ selectedUomId: undefined });
       this.props.history.push(`/settings/uom/${selectedUomId}`);
@@ -51,7 +50,6 @@ export class UomListContainer extends React.Component {
   }
 
   handleRowSelect(row, isSelected) {
-    console.log(row);
     if (isSelected) {
       this.setState({ selectedUomId: row.id });
     }

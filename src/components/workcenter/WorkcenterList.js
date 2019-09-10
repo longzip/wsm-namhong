@@ -46,7 +46,6 @@ class WorkcenterList extends React.Component {
             dataField="name"
             dataSort={true}
             caretRender={getCaret}
-            filter={{ type: "TextFilter", delay: 0 }}
             columnTitle
           >
             Tên
@@ -57,7 +56,6 @@ class WorkcenterList extends React.Component {
             dataFormat={dateFormat} 
             dataSort={true}
             caretRender={getCaret}
-            filter={{ type: "TextFilter", delay: 0 }}
             columnTitle
           >
             Ngày tạo

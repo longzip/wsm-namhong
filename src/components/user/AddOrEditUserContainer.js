@@ -14,23 +14,28 @@ export class AddOrEditUserContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.action.getUserAction(this.props.match.params.id).catch(error => {
-      toastr.error(error);
-    });
+    if (this.props.match.params.id)
+      this.props.action
+        .getUserAction(this.props.match.params.id)
+        .catch(error => {
+          toastr.error(error);
+        });
   }
 
   handleSave(values) {
-    const product = {
+    const user = {
       id: values.id,
-      code: values.code,
-      name: values.name
+      username: values.username,
+      name: values.name,
+      email: values.email,
+      password: values.newpassword || undefined
     };
-
+    console.log(user);
     this.props.action
-      .saveUserAction(product)
+      .saveUserAction(user)
       .then(() => {
-        toastr.success("Product saved");
-        this.props.history.push("/products");
+        toastr.success("User saved");
+        this.props.history.push("/settings/users");
       })
       .catch(error => {
         toastr.error(error);
@@ -39,7 +44,7 @@ export class AddOrEditUserContainer extends React.Component {
 
   handleCancel(event) {
     event.preventDefault();
-    this.props.history.replace("/products");
+    this.props.history.replace("/settings/users");
   }
 
   render() {
@@ -62,14 +67,14 @@ export class AddOrEditUserContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const productId = parseInt(ownProps.match.params.id);
+  const id = parseInt(ownProps.match.params.id);
   if (
-    productId &&
-    state.selectedProductReducer.product &&
-    productId === state.selectedProductReducer.product.id
+    id &&
+    state.selectedUserReducer.user &&
+    id === state.selectedUserReducer.user.id
   ) {
     return {
-      initialValues: state.selectedProductReducer.product
+      initialValues: state.selectedUserReducer.user
     };
   } else {
     return {};
