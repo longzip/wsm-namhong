@@ -28,6 +28,7 @@ import routingWorkcentersReducer from "./routingWorkcentersReducer";
 import selectedRoutingWorkcenterReducer from "./selectedRoutingWorkcenterReducer";
 import uomsReducer from "./uomsReducer";
 import selectedUomReducer from "./selectedUomReducer";
+import loginedUserReducer from "./loginedUserReducer";
 import usersReducer from "./usersReducer";
 import selectedUserReducer from "./selectedUserReducer";
 import workcenterProductivitiesReducer from "./workcenterProductivitiesReducer";
@@ -70,6 +71,7 @@ export default combineReducers({
   selectedUomReducer,
   usersReducer,
   selectedUserReducer,
+  loginedUserReducer,
   workcenterProductivitiesReducer,
   selectedWorkcenterProductivityReducer,
   workordersReducer,

@@ -124,6 +124,10 @@ export default {
     user: undefined
   },
 
+  loginedUserReducer: {
+    userAuth: JSON.parse(localStorage.getItem('user'))
+  },
+
   workcenterProductivitiesReducer: {
     workcenterProductivities: []
   },

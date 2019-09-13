@@ -1,8 +1,20 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as userAction from "../../action/UserAction";
+import { hasRole } from "../../utils/auth";
 
-export default class MenuContainer extends React.Component {
+export class MenuContainer extends React.Component {
+  constructor() {
+    super();
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+  handleLogout() {
+    this.props.action.logoutUserAction();
+  }
   render() {
+    const { userAuth } = this.props;
     return (
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         <Link to="/" className="brand-link">
@@ -27,7 +39,7 @@ export default class MenuContainer extends React.Component {
             </div>
             <div className="info">
               <Link to="/about" className="d-block">
-                Van Long
+                {this.props.userAuth.name}
               </Link>
             </div>
           </div>
@@ -258,46 +270,50 @@ export default class MenuContainer extends React.Component {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item has-treeview">
-                <NavLink
-                  activeClassName="active"
-                  to="/settings"
-                  className="nav-link"
-                >
-                  <i className="nav-icon fa fa-cogs" />
-                  <p>
-                    Settings
-                    <i className="right fas fa-angle-left" />
-                  </p>
-                </NavLink>
-                <ul className="nav nav-treeview">
-                <li className="nav-item">
-                    <NavLink
-                      activeClassName="active"
-                      to="/settings/uoms"
-                      className="nav-link"
-                    >
-                      <i className="fa fa-users nav-icon" />
-                      <p>Đơn vị</p>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink
-                      activeClassName="active"
-                      to="/settings/users"
-                      className="nav-link"
-                    >
-                      <i className="fa fa-users nav-icon" />
-                      <p>Users</p>
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
+              {hasRole(userAuth, ["admin"]) && (
+                <li className="nav-item has-treeview">
+                  <NavLink
+                    activeClassName="active"
+                    to="/settings"
+                    className="nav-link"
+                  >
+                    <i className="nav-icon fa fa-cogs" />
+                    <p>
+                      Settings
+                      <i className="right fas fa-angle-left" />
+                    </p>
+                  </NavLink>
+                  <ul className="nav nav-treeview">
+                    <li className="nav-item">
+                      <NavLink
+                        activeClassName="active"
+                        to="/settings/uoms"
+                        className="nav-link"
+                      >
+                        <i className="fa fa-users nav-icon" />
+                        <p>Đơn vị</p>
+                      </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                      <NavLink
+                        activeClassName="active"
+                        to="/settings/users"
+                        className="nav-link"
+                      >
+                        <i className="fa fa-users nav-icon" />
+                        <p>Users</p>
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              )}
               <li className="nav-item">
                 <NavLink
                   activeClassName="active"
-                  to="/logout"
+                  to="#"
                   className="nav-link"
+                  onClick={this.handleLogout}
                 >
                   <i className="nav-icon 	fa fa-power-off" />
                   <p>Thoát</p>
@@ -310,3 +326,16 @@ export default class MenuContainer extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  userAuth: state.loginedUserReducer.userAuth
+});
+
+const mapDispatchToProps = dispatch => ({
+  action: bindActionCreators(userAction, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MenuContainer);
