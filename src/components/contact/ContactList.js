@@ -25,6 +25,7 @@ class ContactList extends React.Component {
     return (
       <BootstrapTable
         data={this.props.contacts}
+        pagination={true}
         selectRow={this.selectRowProp}
         options={this.options}
         bordered={false}
@@ -32,28 +33,62 @@ class ContactList extends React.Component {
         hover
         condensed
       >
-        <TableHeaderColumn dataField="id" isKey>
+        <TableHeaderColumn dataField="id" isKey hidden>
           Id
-        </TableHeaderColumn>
-
-        <TableHeaderColumn
-          dataField="code"
-          dataSort={true}
-          caretRender={getCaret}
-          filter={{ type: "TextFilter", delay: 0 }}
-          columnTitle
-        >
-          Mã dự án
         </TableHeaderColumn>
 
         <TableHeaderColumn
           dataField="name"
           dataSort={true}
           caretRender={getCaret}
-          filter={{ type: "TextFilter", delay: 0 }}
+          columnTitle
+        >
+          Mã dự án
+        </TableHeaderColumn>
+
+        <TableHeaderColumn
+          dataField="description"
+          dataSort={true}
+          caretRender={getCaret}
           columnTitle
         >
           Tên chủ đầu tư
+        </TableHeaderColumn>
+
+        <TableHeaderColumn
+          dataField="phone"
+          dataSort={true}
+          caretRender={getCaret}
+          columnTitle
+        >
+          Phone
+        </TableHeaderColumn>
+
+        <TableHeaderColumn
+          dataField="email"
+          dataSort={true}
+          caretRender={getCaret}
+          columnTitle
+        >
+          Email
+        </TableHeaderColumn>
+
+        <TableHeaderColumn
+          dataField="addressLine"
+          dataSort={true}
+          caretRender={getCaret}
+          columnTitle
+        >
+          Địa chỉ
+        </TableHeaderColumn>
+
+        <TableHeaderColumn
+          dataField="city"
+          dataSort={true}
+          caretRender={getCaret}
+          columnTitle
+        >
+          Tỉnh thành
         </TableHeaderColumn>
 
       </BootstrapTable>

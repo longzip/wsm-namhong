@@ -31,14 +31,14 @@ export const updateExistingContactResponse = () => ({
   type: ActionType.UPDATE_EXISTING_CONTACT_RESPONSE
 });
 
-export function saveContactAction(ContactBeingAddedOrEdited) {
+export function saveContactAction(contactBeingAddedOrEdited) {
   return function(dispatch) {
     dispatch(ApiCallBeginAction());
-    if (ContactBeingAddedOrEdited.id) {
+    if (contactBeingAddedOrEdited.id) {
       return fetchClient
         .put(
-          "Contacts/" + ContactBeingAddedOrEdited.id,
-          ContactBeingAddedOrEdited
+          "contacts/" + contactBeingAddedOrEdited.id,
+          contactBeingAddedOrEdited
         )
         .then(() => {
           dispatch(updateExistingContactResponse());
@@ -49,7 +49,7 @@ export function saveContactAction(ContactBeingAddedOrEdited) {
         });
     } else {
       return fetchClient
-        .post("Contacts", ContactBeingAddedOrEdited)
+        .post("Contacts", contactBeingAddedOrEdited)
         .then(() => {
           dispatch(addNewContactResponse());
         })
@@ -61,17 +61,17 @@ export function saveContactAction(ContactBeingAddedOrEdited) {
   };
 }
 
-export const getContactResponse = ContactFound => ({
+export const getContactResponse = contactFound => ({
   type: ActionType.GET_CONTACT_RESPONSE,
-  Contact: ContactFound
+  contact: contactFound
 });
 
-export function getContactAction(ContactId) {
+export function getContactAction(contactId) {
   return dispatch => {
     dispatch(ApiCallBeginAction());
 
     return fetchClient
-      .get("Contacts/" + ContactId)
+      .get("Contacts/" + contactId)
       .then(response => {
         dispatch(getContactResponse(response.data.result));
       })
@@ -85,12 +85,12 @@ export const deleteContactResponse = () => ({
   type: ActionType.DELETE_CONTACT_RESPONSE
 });
 
-export function deleteContactAction(ContactId) {
+export function deleteContactAction(contactId) {
   return dispatch => {
     dispatch(ApiCallBeginAction());
 
     return fetchClient
-      .delete("Contacts/" + ContactId)
+      .delete("contacts/" + contactId)
       .then(() => {
         dispatch(deleteContactResponse());
       })

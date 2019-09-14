@@ -112,18 +112,18 @@ export class App extends React.Component {
             />
             <PrivateRoute
               authed={userAuth}
-              path="/crm/contacts"
+              path="/sales/contacts"
               component={ContactListContainer}
             />
             <PrivateRoute
               authed={userAuth}
               exact
-              path="/crm/contact"
+              path="/sales/contact"
               component={AddOrEditContactContainer}
             />
             <PrivateRoute
               authed={userAuth}
-              path="/crm/contact/:id"
+              path="/sales/contact/:id"
               component={AddOrEditContactContainer}
             />
             <PrivateRoute
@@ -160,18 +160,18 @@ export class App extends React.Component {
             />
             <PrivateRoute
               authed={userAuth}
-              path="/crm/orders"
+              path="/sales/orders"
               component={OrderListContainer}
             />
             <PrivateRoute
               authed={userAuth}
               exact
-              path="/crm/order"
+              path="/sales/order"
               component={AddOrEditOrderContainer}
             />
             <PrivateRoute
               authed={userAuth}
-              path="/crm/order/:id"
+              path="/sales/order/:id"
               component={AddOrEditOrderContainer}
             />
             <PrivateRoute

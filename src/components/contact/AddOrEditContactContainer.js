@@ -14,25 +14,30 @@ export class AddOrEditContactContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.action
-      .getContactAction(this.props.match.params.id)
-      .catch(error => {
+    let id = this.props.match.params.id;
+    if (id)
+      this.props.action.getContactAction(id).catch(error => {
         toastr.error(error);
       });
   }
 
   handleSave(values) {
-    const product = {
+    const contact = {
       id: values.id,
-      code: values.code,
-      name: values.name
+      description: values.description,
+      phone: values.phone,
+      email: values.email,
+      name: values.name,
+      addressLine: values.addressLine,
+      city: values.city,
+      note: values.note
     };
 
     this.props.action
-      .saveContactAction(product)
+      .saveContactAction(contact)
       .then(() => {
-        toastr.success("Product saved");
-        this.props.history.push("/products");
+        toastr.success("Đã lưu thông tin khách hàng");
+        this.props.history.push("/sales/contacts");
       })
       .catch(error => {
         toastr.error(error);
@@ -41,13 +46,12 @@ export class AddOrEditContactContainer extends React.Component {
 
   handleCancel(event) {
     event.preventDefault();
-    this.props.history.replace("/products");
+    this.props.history.replace("/sales/contacts");
   }
 
   render() {
     const { initialValues } = this.props;
     const heading = initialValues && initialValues.id ? "Edit" : "Add";
-    console.log(this.props.initialValues);
     return (
       <div className="content-wrapper">
         <div className="container">
@@ -64,14 +68,14 @@ export class AddOrEditContactContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const productId = parseInt(ownProps.match.params.id);
+  const contactId = parseInt(ownProps.match.params.id);
   if (
-    productId &&
-    state.selectedProductReducer.product &&
-    productId === state.selectedProductReducer.product.id
+    contactId &&
+    state.selectedContactReducer.contact &&
+    contactId === state.selectedContactReducer.contact.id
   ) {
     return {
-      initialValues: state.selectedProductReducer.product
+      initialValues: state.selectedContactReducer.contact
     };
   } else {
     return {};

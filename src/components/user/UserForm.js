@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 import FieldInput from "../common/FieldInput";
+import SelectInput from "../common/SelectInput";
 
 export const UserForm = ({
   handleSubmit,
@@ -47,6 +48,13 @@ export const UserForm = ({
         placeholder=""
         component={FieldInput}
       />
+
+      {/* <Field
+        name="authorId"
+        label="Author"
+        options={authors}
+        component={SelectInput}
+      /> */}
 
       <div>
         <button type="submit" disabled={submitting} className="btn btn-primary">

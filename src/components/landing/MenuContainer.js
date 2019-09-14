@@ -65,7 +65,7 @@ export class MenuContainer extends React.Component {
               <li className="nav-item has-treeview">
                 <NavLink
                   activeClassName="active"
-                  to="/crm"
+                  to="/sales"
                   className="nav-link"
                 >
                   <i className="nav-icon fab fa-delicious" />
@@ -78,7 +78,7 @@ export class MenuContainer extends React.Component {
                   <li className="nav-item">
                     <NavLink
                       activeClassName="active"
-                      to="/crm/orders"
+                      to="/sales/orders"
                       className="nav-link"
                     >
                       <i className="fa fa-cart-arrow-down nav-icon" />
@@ -88,7 +88,7 @@ export class MenuContainer extends React.Component {
                   <li className="nav-item">
                     <NavLink
                       activeClassName="active"
-                      to="/crm/contacts"
+                      to="/sales/contacts"
                       className="nav-link"
                     >
                       <i className="far fa-address-book nav-icon" />

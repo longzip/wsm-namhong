@@ -30,7 +30,6 @@ export class AddOrEditUserContainer extends React.Component {
       email: values.email,
       password: values.newpassword || undefined
     };
-    console.log(user);
     this.props.action
       .saveUserAction(user)
       .then(() => {

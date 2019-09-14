@@ -25,23 +25,23 @@ export class ContactListContainer extends Component {
   }
 
   handleAdd() {
-    this.props.history.push("/course");
+    this.props.history.push("/sales/contact");
   }
 
   handleEdit() {
-    const selectedCourseId = this.state.selectedCourseId;
-    if (selectedCourseId) {
-      this.setState({ selectedCourseId: undefined });
-      this.props.history.push(`/course/${selectedCourseId}`);
+    const selectedContactId = this.state.selectedContactId;
+    if (selectedContactId) {
+      this.setState({ selectedContactId: undefined });
+      this.props.history.push(`/sales/contact/${selectedContactId}`);
     }
   }
 
   handleDelete() {
-    const selectedCourseId = this.state.selectedCourseId;
+    const selectedContactId = this.state.selectedContactId;
 
-    if (selectedCourseId) {
-      this.setState({ selectedCourseId: undefined });
-      this.props.action.deleteCourseAction(selectedCourseId).catch(error => {
+    if (selectedContactId) {
+      this.setState({ selectedContactId: undefined });
+      this.props.action.deleteContactAction(selectedContactId).catch(error => {
         toastr.error(error);
       });
     }
@@ -49,7 +49,7 @@ export class ContactListContainer extends Component {
 
   handleRowSelect(row, isSelected) {
     if (isSelected) {
-      this.setState({ selectedCourseId: row.id });
+      this.setState({ selectedContactId: row.id });
     }
   }
 
