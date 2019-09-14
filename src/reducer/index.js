@@ -14,6 +14,8 @@ import deliversReducer from "./deliversReducer";
 import selectedDeliverReducer from "./selectedDeliverReducer";
 import inventoriesReducer from "./inventoriesReducer";
 import selectedInventoryReducer from "./selectedInventoryReducer";
+import quotesReducer from "./quotesReducer";
+import selectedQuoteReducer from "./selectedQuoteReducer";
 import ordersReducer from "./ordersReducer";
 import selectedOrderReducer from "./selectedOrderReducer";
 import orderLinesReducer from "./orderLinesReducer";
@@ -57,6 +59,8 @@ export default combineReducers({
   selectedInventoryReducer,
   ordersReducer,
   selectedOrderReducer,
+  quotesReducer,
+  selectedQuoteReducer,
   orderLinesReducer,
   selectedOrderLineReducer,
   productCategoriesReducer,

@@ -78,10 +78,20 @@ export class MenuContainer extends React.Component {
                   <li className="nav-item">
                     <NavLink
                       activeClassName="active"
-                      to="/sales/orders"
+                      to="/sales/quotes"
                       className="nav-link"
                     >
                       <i className="fa fa-cart-arrow-down nav-icon" />
+                      <p>Báo giá</p>
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="active"
+                      to="/sales/orders"
+                      className="nav-link"
+                    >
+                      <i className="fas fa-check-circle nav-icon" />
                       <p>Đơn hàng</p>
                     </NavLink>
                   </li>

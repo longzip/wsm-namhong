@@ -12,8 +12,8 @@ export class ProductListContainer extends React.Component {
 
     this.state = { selectedProductId: undefined };
 
-    this.handleAddCourse = this.handleAddCourse.bind(this);
-    this.handleEditProduct = this.handleEditProduct.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleRowSelect = this.handleRowSelect.bind(this);
   }
@@ -24,11 +24,11 @@ export class ProductListContainer extends React.Component {
     });
   }
 
-  handleAddCourse() {
+  handleAdd() {
     this.props.history.push("/datas/product");
   }
 
-  handleEditProduct() {
+  handleEdit() {
     const selectedProductId = this.state.selectedProductId;
     if (selectedProductId) {
       this.setState({ selectedProductId: undefined });
@@ -75,7 +75,7 @@ export class ProductListContainer extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={this.handleAddCourse}
+                  onClick={this.handleAdd}
                 >
                   <i className="fa fa-plus" aria-hidden="true" /> New
                 </button>
@@ -83,7 +83,7 @@ export class ProductListContainer extends React.Component {
                 <button
                   type="button"
                   className="btn btn-warning ml-2"
-                  onClick={this.handleEditProduct}
+                  onClick={this.handleEdit}
                 >
                   <i className="fa fa-pencil" aria-hidden="true" /> Edit
                 </button>

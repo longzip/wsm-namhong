@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 import FieldInput from "../common/FieldInput";
 
-export const UserForm = ({
+export const QuoteForm = ({
   handleSubmit,
   pristine,
   reset,
@@ -19,41 +19,10 @@ export const UserForm = ({
       <Field
         type="text"
         name="name"
-        label="Họ và tên"
-        placeholder="Họ và tên"
+        label="Name"
+        placeholder="Name of the course"
         component={FieldInput}
       />
-
-      <Field
-        type="text"
-        name="username"
-        label="Tên đăng nhập"
-        placeholder="Tên đăng nhập"
-        component={FieldInput}
-      />
-
-      <Field
-        type="text"
-        name="email"
-        label="Email"
-        placeholder="Email"
-        component={FieldInput}
-      />
-
-      <Field
-        type="password"
-        name="newpassword"
-        label="Mật khẩu"
-        placeholder=""
-        component={FieldInput}
-      />
-
-      {/* <Field
-        name="authorId"
-        label="Author"
-        options={authors}
-        component={SelectInput}
-      /> */}
 
       <div>
         <button type="submit" disabled={submitting} className="btn btn-primary">
@@ -93,7 +62,7 @@ const validate = values => {
   return errors;
 };
 
-UserForm.propTypes = {
+QuoteForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
@@ -104,6 +73,6 @@ UserForm.propTypes = {
 };
 
 export default reduxForm({
-  form: "UserForm",
+  form: "QuoteForm",
   validate
-})(UserForm);
+})(QuoteForm);

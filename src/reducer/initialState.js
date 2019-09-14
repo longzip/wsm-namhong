@@ -68,6 +68,14 @@ export default {
     order: undefined
   },
 
+  quotesReducer: {
+    quotes: []
+  },
+
+  selectedQuoteReducer: {
+    quote: undefined
+  },
+
   orderLinesReducer: {
     orderLines: []
   },
@@ -125,7 +133,7 @@ export default {
   },
 
   loginedUserReducer: {
-    userAuth: JSON.parse(localStorage.getItem('user'))
+    userAuth: JSON.parse(localStorage.getItem("user"))
   },
 
   workcenterProductivitiesReducer: {

@@ -36,10 +36,7 @@ export function saveOrderAction(OrderBeingAddedOrEdited) {
     dispatch(ApiCallBeginAction());
     if (OrderBeingAddedOrEdited.id) {
       return fetchClient
-        .put(
-          "Orders/" + OrderBeingAddedOrEdited.id,
-          OrderBeingAddedOrEdited
-        )
+        .put("Orders/" + OrderBeingAddedOrEdited.id, OrderBeingAddedOrEdited)
         .then(() => {
           dispatch(updateExistingOrderResponse());
         })
@@ -63,7 +60,7 @@ export function saveOrderAction(OrderBeingAddedOrEdited) {
 
 export const getOrderResponse = OrderFound => ({
   type: ActionType.GET_ORDER_RESPONSE,
-  Order: OrderFound
+  order: OrderFound
 });
 
 export function getOrderAction(OrderId) {

@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import getCaret from "../common/GetCaret";
 
-class OrderList extends React.Component {
+const titleFormatter = (cell, row) => {
+  return `<a href=/sales/order-lines>${cell}</a>`;
+};
+
+class QuoteList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +28,7 @@ class OrderList extends React.Component {
   render() {
     return (
       <BootstrapTable
-        data={this.props.orders}
+        data={this.props.quotes}
         selectRow={this.selectRowProp}
         options={this.options}
         bordered={false}
@@ -47,6 +51,7 @@ class OrderList extends React.Component {
 
         <TableHeaderColumn
           dataField="name"
+          dataFormat={titleFormatter}
           dataSort={true}
           caretRender={getCaret}
           columnTitle
@@ -76,9 +81,9 @@ class OrderList extends React.Component {
   }
 }
 
-OrderList.propTypes = {
-  orders: PropTypes.array.isRequired,
+QuoteList.propTypes = {
+  quotes: PropTypes.array.isRequired,
   handleRowSelect: PropTypes.func.isRequired
 };
 
-export default OrderList;
+export default QuoteList;

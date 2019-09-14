@@ -28,11 +28,12 @@ export class AddOrEditCourseContainer extends React.Component {
   }
 
   handleSave(values) {
+    console.log(values);
     const course = {
       id: values.id,
       title: values.title,
       watchHref: values.watchHref,
-      authorId: values.authorId,
+      authorId: values.authorId.value,
       length: values.length,
       category: values.category
     };

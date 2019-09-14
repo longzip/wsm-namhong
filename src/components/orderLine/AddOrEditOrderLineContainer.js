@@ -7,18 +7,19 @@ import * as orderLineAction from "../../action/OrderLineAction";
 import OrderLineForm from "./OrderLineForm";
 
 export class AddOrEditOrderLineContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount() {
-    this.props.action
-      .getOrderLineAction(this.props.match.params.id)
-      .catch(error => {
-        toastr.error(error);
-      });
+    if (this.props.match.params.id)
+      this.props.action
+        .getOrderLineAction(this.props.match.params.id)
+        .catch(error => {
+          toastr.error(error);
+        });
   }
 
   handleSave(values) {
@@ -31,8 +32,8 @@ export class AddOrEditOrderLineContainer extends React.Component {
     this.props.action
       .saveOrderLineAction(product)
       .then(() => {
-        toastr.success("Product saved");
-        this.props.history.push("/products");
+        toastr.success("Thêm sản phẩm thành công");
+        this.props.history.push("/sales/order-lines");
       })
       .catch(error => {
         toastr.error(error);
@@ -41,13 +42,12 @@ export class AddOrEditOrderLineContainer extends React.Component {
 
   handleCancel(event) {
     event.preventDefault();
-    this.props.history.replace("/products");
+    this.props.history.replace("/sales/order-lines");
   }
 
   render() {
     const { initialValues } = this.props;
     const heading = initialValues && initialValues.id ? "Edit" : "Add";
-    console.log(this.props.initialValues);
     return (
       <div className="content-wrapper">
         <div className="container">
@@ -64,14 +64,14 @@ export class AddOrEditOrderLineContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const productId = parseInt(ownProps.match.params.id);
+  const orderLineId = parseInt(ownProps.match.params.id);
   if (
-    productId &&
-    state.selectedProductReducer.product &&
-    productId === state.selectedProductReducer.product.id
+    orderLineId &&
+    state.selectedOrderLineReducer.orderLine &&
+    orderLineId === state.selectedOrderLineReducer.orderLine.id
   ) {
     return {
-      initialValues: state.selectedProductReducer.product
+      initialValues: state.selectedOrderLineReducer.orderLine
     };
   } else {
     return {};

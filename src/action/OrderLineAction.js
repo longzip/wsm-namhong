@@ -63,7 +63,7 @@ export function saveOrderLineAction(OrderLineBeingAddedOrEdited) {
 
 export const getOrderLineResponse = OrderLineFound => ({
   type: ActionType.GET_ORDERLINE_RESPONSE,
-  OrderLine: OrderLineFound
+  orderLine: OrderLineFound
 });
 
 export function getOrderLineAction(OrderLineId) {

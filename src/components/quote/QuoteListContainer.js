@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import toastr from "toastr";
-import * as orderAction from "../../action/OrderAction";
-import OrderList from "./OrderList";
+import * as quoteAction from "../../action/QuoteAction";
+import QuoteList from "./QuoteList";
 
-export class OrderListContainer extends React.Component {
+export class QuoteListContainer extends React.Component {
   constructor() {
     super();
 
-    this.state = { selectedOrderId: undefined };
+    this.state = { selectedQuoteId: undefined };
 
     this.handleAdd = this.handleAdd.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -19,29 +19,29 @@ export class OrderListContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.action.getOrdersAction().catch(error => {
+    this.props.action.getQuotesAction().catch(error => {
       toastr.error(error);
     });
   }
 
   handleAdd() {
-    this.props.history.push("/sales/order");
+    this.props.history.push("/sales/quote");
   }
 
   handleEdit() {
-    const selectedOrderId = this.state.selectedOrderId;
-    if (selectedOrderId) {
-      this.setState({ selectedOrderId: undefined });
-      this.props.history.push(`/sales/order/${selectedOrderId}`);
+    const selectedQuoteId = this.state.selectedQuoteId;
+    if (selectedQuoteId) {
+      this.setState({ selectedQuoteId: undefined });
+      this.props.history.push(`/sales/quote/${selectedQuoteId}`);
     }
   }
 
   handleDelete() {
-    const selectedOrderId = this.state.selectedOrderId;
+    const selectedQuoteId = this.state.selectedQuoteId;
 
-    if (selectedOrderId) {
-      this.setState({ selectedOrderId: undefined });
-      this.props.action.deleteOrderAction(selectedOrderId).catch(error => {
+    if (selectedQuoteId) {
+      this.setState({ selectedQuoteId: undefined });
+      this.props.action.deleteQuoteAction(selectedQuoteId).catch(error => {
         toastr.error(error);
       });
     }
@@ -49,14 +49,14 @@ export class OrderListContainer extends React.Component {
 
   handleRowSelect(row, isSelected) {
     if (isSelected) {
-      this.setState({ selectedOrderId: row.id });
+      this.setState({ selectedQuoteId: row.id });
     }
   }
 
   render() {
-    const { orders } = this.props;
+    const { quotes } = this.props;
 
-    if (!orders) {
+    if (!quotes) {
       return <div>Đang tải dữ liệu...</div>;
     }
 
@@ -106,8 +106,8 @@ export class OrderListContainer extends React.Component {
 
           <div className="row">
             <div className="col">
-              <OrderList
-                orders={orders}
+              <QuoteList
+                quotes={quotes}
                 handleRowSelect={this.handleRowSelect}
               />
             </div>
@@ -119,15 +119,15 @@ export class OrderListContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  orders: state.ordersReducer.orders
+  quotes: state.quotesReducer.quotes
 });
 
 const mapDispatchToProps = dispatch => ({
-  action: bindActionCreators(orderAction, dispatch)
+  action: bindActionCreators(quoteAction, dispatch)
 });
 
-OrderListContainer.propTypes = {
-  orders: PropTypes.array,
+QuoteListContainer.propTypes = {
+  quotes: PropTypes.array,
   action: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 };
@@ -135,4 +135,4 @@ OrderListContainer.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OrderListContainer);
+)(QuoteListContainer);

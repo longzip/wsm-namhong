@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import { hasRole } from "../utils/auth";
 import PageNotFound from "./common/PageNotFound";
 import Home from "./landing/Home";
 import ProductListContainer from "./product/ProductListContainer";
@@ -20,6 +19,8 @@ import InventoryListContainer from "./inventory/InventoryListContainer";
 import AddOrEditInventoryContainer from "./inventory/AddOrEditInventoryContainer";
 import OrderListContainer from "./order/OrderListContainer";
 import AddOrEditOrderContainer from "./order/AddOrEditOrderContainer";
+import QuoteListContainer from "./quote/QuoteListContainer";
+import AddOrEditQuoteContainer from "./quote/AddOrEditQuoteContainer";
 import OrderLineListContainer from "./orderLine/OrderLineListContainer";
 import AddOrEditOrderLineContainer from "./orderLine/AddOrEditOrderLineContainer";
 import ProductCategoryListContainer from "./productCategory/ProductCategoryListContainer";
@@ -158,6 +159,24 @@ export class App extends React.Component {
               path="/inventory/:id"
               component={AddOrEditInventoryContainer}
             />
+
+            <PrivateRoute
+              authed={userAuth}
+              path="/sales/quotes"
+              component={QuoteListContainer}
+            />
+            <PrivateRoute
+              authed={userAuth}
+              exact
+              path="/sales/quote"
+              component={AddOrEditQuoteContainer}
+            />
+            <PrivateRoute
+              authed={userAuth}
+              path="/sales/quote/:id"
+              component={AddOrEditQuoteContainer}
+            />
+
             <PrivateRoute
               authed={userAuth}
               path="/sales/orders"
@@ -176,18 +195,18 @@ export class App extends React.Component {
             />
             <PrivateRoute
               authed={userAuth}
-              path="/order-lines"
+              path="/sales/order-lines"
               component={OrderLineListContainer}
             />
             <PrivateRoute
               authed={userAuth}
               exact
-              path="/order-line"
+              path="/sales/order-line"
               component={AddOrEditOrderLineContainer}
             />
             <PrivateRoute
               authed={userAuth}
-              path="/order-line/:id"
+              path="/sales/order-line/:id"
               component={AddOrEditOrderLineContainer}
             />
             <PrivateRoute

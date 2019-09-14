@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import toastr from "toastr";
-import * as orderAction from "../../action/OrderAction";
-import OrderForm from "./OrderForm";
+import * as quoterAction from "../../action/QuoteAction";
+import QuoteForm from "./QuoteForm";
 
-export class AddOrEditOrderContainer extends React.Component {
+export class AddOrEditQuoteContainer extends React.Component {
   constructor() {
     super();
     this.handleSave = this.handleSave.bind(this);
@@ -16,7 +16,7 @@ export class AddOrEditOrderContainer extends React.Component {
   componentDidMount() {
     if (this.props.match.params.id)
       this.props.action
-        .getOrderAction(this.props.match.params.id)
+        .getQuoteAction(this.props.match.params.id)
         .catch(error => {
           toastr.error(error);
         });
@@ -30,10 +30,10 @@ export class AddOrEditOrderContainer extends React.Component {
     };
 
     this.props.action
-      .saveOrderAction(order)
+      .saveQuoteAction(order)
       .then(() => {
         toastr.success("Đã lưu báo giá");
-        this.props.history.push("/sales/orders");
+        this.props.history.push("/sales/quotes");
       })
       .catch(error => {
         toastr.error(error);
@@ -42,7 +42,7 @@ export class AddOrEditOrderContainer extends React.Component {
 
   handleCancel(event) {
     event.preventDefault();
-    this.props.history.replace("/sales/orders");
+    this.props.history.replace("/sales/quotes");
   }
 
   render() {
@@ -51,7 +51,7 @@ export class AddOrEditOrderContainer extends React.Component {
     return (
       <div className="content-wrapper">
         <div className="container">
-          <OrderForm
+          <QuoteForm
             heading={heading}
             handleSave={this.handleSave}
             handleCancel={this.handleCancel}
@@ -64,14 +64,14 @@ export class AddOrEditOrderContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const orderId = parseInt(ownProps.match.params.id);
+  const quoteId = parseInt(ownProps.match.params.id);
   if (
-    orderId &&
-    state.selectedOrderReducer.order &&
-    orderId === state.selectedOrderReducer.order.id
+    quoteId &&
+    state.selectedQuoteReducer.quote &&
+    quoteId === state.selectedQuoteReducer.quote.id
   ) {
     return {
-      initialValues: state.selectedOrderReducer.order
+      initialValues: state.selectedQuoteReducer.quote
     };
   } else {
     return {};
@@ -79,10 +79,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  action: bindActionCreators(orderAction, dispatch)
+  action: bindActionCreators(quoterAction, dispatch)
 });
 
-AddOrEditOrderContainer.propTypes = {
+AddOrEditQuoteContainer.propTypes = {
   action: PropTypes.object.isRequired,
   history: PropTypes.object,
   initialValues: PropTypes.object,
@@ -92,4 +92,4 @@ AddOrEditOrderContainer.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddOrEditOrderContainer);
+)(AddOrEditQuoteContainer);

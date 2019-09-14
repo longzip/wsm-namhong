@@ -21,7 +21,7 @@ export function loginUserAction(user) {
           localStorage.setItem("token", response.data.token);
           dispatch(loginUsersResponse(response.data.result));
         } else {
-          throw "Khong xac dinh duoc token!";
+          throw new Error("Khong xac dinh duoc token!");
         }
       })
       .catch(error => {
