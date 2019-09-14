@@ -318,18 +318,18 @@ export class App extends React.Component {
               path="/mrp/workorder/:id"
               component={AddOrEditWorkorderContainer}
             />
-            <PrivateRoute
+            <Route
               authed={userAuth}
               path="/settings/users"
               component={UserListContainer}
             />
-            <PrivateRoute
+            <Route
               authed={userAuth}
               exact
               path="/settings/user"
               component={AddOrEditUserContainer}
             />
-            <PrivateRoute
+            <Route
               authed={userAuth}
               path="/settings/user/:id"
               component={AddOrEditUserContainer}
